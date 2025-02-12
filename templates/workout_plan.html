@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Workout Plan</title>
+    <link rel="stylesheet" href="static/styles.css">
+    <style>
+        /* Full-Screen Gradient Background */
+        .bg-gradient {
+            background: linear-gradient(to right, #ff7e5f, #feb47b);
+            min-height: 100vh;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #ecf0f1;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            min-height: 100vh;
+            flex-direction: column;
+        }
+        .container {
+            background-color: #fff;
+            width: 90%;
+            max-width: 950px;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+            margin-bottom: 40px;
+            text-align: center;
+        }
+        h1 {
+            color: #34495e;
+            font-size: 2rem;  /* Decreased size */
+            margin-bottom: 25px;
+            font-weight: 600;
+        }
+        .workout-categories {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+            margin-top: 30px;
+        }
+        .category {
+            background-color: #f9fafb;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .category:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+        }
+        .category h3 {
+            color: #2d3436;
+            font-size: 1.6rem;  /* Decreased size */
+            margin-bottom: 15px;
+            font-weight: 500;
+        }
+        .category ul {
+            list-style-type: none;
+            padding: 0;
+            font-size: 1rem;  /* Decreased size */
+        }
+        .category ul li {
+            padding: 8px;
+            color: #7f8c8d;
+            line-height: 1.6;
+        }
+        .category ul li::before {
+            content: "✔️ ";
+            color: #27ae60;
+            font-size: 1.2rem;
+        }
+        @media (max-width: 768px) {
+            .workout-categories {
+                grid-template-columns: 1fr;
+            }
+        }
+        .category ul li:hover {
+            color: #2ecc71;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body class="bg-gradient">
+    <div class="container">
+        <h1>Fitness Goal: {{ fitness_goal }}</h1>
+        
+        <div class="workout-categories">
+            {% for category, exercises_list in exercises.items() %}
+                <div class="category">
+                    <h3>{{ category }}</h3>
+                    <ul>
+                        {% for exercise in exercises_list %}
+                            <li>{{ exercise }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+</html>
